@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text , StyleSheet, Image, FlatList} from 'react-native';
+import {View, Text , StyleSheet, Image, FlatList, ScrollView} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -37,6 +37,7 @@ export default function Home () {
     return(
     <View style={styles.container}>
         {/* Header */}
+        <ScrollView>
         <SafeAreaView>
             <View style={styles.headerWrapper}>
                 <Image 
@@ -119,7 +120,7 @@ export default function Home () {
 
         </View>
 
-
+        </ScrollView>     
     </View> 
     )   
 };
@@ -246,6 +247,7 @@ const styles = StyleSheet.create({
         paddingTop:20,
         paddingLeft:20,
         flexDirection: 'row',
+        overflow:'hidden',
         
     },
 
@@ -310,8 +312,14 @@ const styles = StyleSheet.create({
     },
 
 
-    popularCardRight:{},
-    popularCardImage:{},
+    popularCardRight:{
+        marginLeft:40,
+    },
+    popularCardImage:{
+        width:210,
+        height:125,
+        resizeMode:'contain',
+    },
 
 
    
