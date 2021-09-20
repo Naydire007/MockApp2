@@ -13,14 +13,20 @@ Feather.loadFont();
 export default function Home () {
     const renderCategoryItem =({item}) => {
         return(
-            <View style={styles.categoryItemWrapper}>
+            <View style={[styles.categoryItemWrapper,{
+                backgroundColor: item.selected ? colors.primary : colors.white,
+                marginLeft: item.id == 1 ? 20 : 0,
+            }]}>
                 <Image source={item.image} style={styles.categoryItemImage}/>
                 <Text style={styles.categoryItemTitle}>{item.title}</Text>
-                <View style={styles.categorySelectWrapper}>
+                <View style={[styles.categorySelectWrapper,{
+                    backgroundColor: item.selected ? colors.white : colors.secondary,
+                }]}>
                     <Feather 
                     name="chevron-right" 
                     size={8}
                     style={styles.categorySelectIcon}
+                    color={item.selected ? colors.black : colors.white}
                     />
                 </View>
             </View>
@@ -69,6 +75,9 @@ export default function Home () {
              />
         </View>
         </View>
+
+        {/* Popular */}
+
     </View> 
     )   
 };
@@ -176,6 +185,8 @@ const styles = StyleSheet.create({
         borderRadius:26,
         marginBottom:20,
     },
-    categorySelectIcon:{},
+    categorySelectIcon:{
+        alignSelf:'center',
+    },
 
 });
