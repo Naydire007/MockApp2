@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text , StyleSheet, Image, FlatList, ScrollView} from 'react-native';
+import {View, Text , StyleSheet, Image, FlatList, ScrollView, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,7 +12,7 @@ Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 
-export default function Home () {
+export default function Home ({navigation}) {
     const renderCategoryItem =({item}) => {
         return(
             <View style={[styles.categoryItemWrapper,{
@@ -37,7 +37,8 @@ export default function Home () {
     return(
     <View style={styles.container}>
         {/* Header */}
-        <ScrollView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic" 
+        showsVerticalScrollIndicator={false}>
         <SafeAreaView>
             <View style={styles.headerWrapper}>
                 <Image 
@@ -84,7 +85,13 @@ export default function Home () {
         <View style={styles.popularWrapper}>
             <Text style={styles.popularTitle}>Popular</Text>
             {popularData.map((item) => (
-                <View style={[styles.popularCardWrapper,{
+                <TouchableOpacity 
+                key={item.id}
+                onPress={() => navigation.navigate('Details')}
+                >
+                <View 
+                
+                style={[styles.popularCardWrapper,{
                     marginTop: item.id == 1 ? 10:20,
                 }]}>
                     <View>
@@ -116,6 +123,7 @@ export default function Home () {
                             <Image source={item.image} style={styles.popularCardImage}/>
                         </View>
                 </View>
+                </TouchableOpacity>
             ))}
 
         </View>
@@ -203,6 +211,14 @@ const styles = StyleSheet.create({
         backgroundColor:'#F5Ca48',
         marginRight:20,
         borderRadius:20,
+        shadowColor:colors.black,
+        shadowOffset:{
+            width:0,
+            height:2,
+        },
+        shadowOpacity:0.05,
+        shadowRadius:10,
+        elevation:2,
 
     },
     categoryItemImage:{
@@ -248,6 +264,14 @@ const styles = StyleSheet.create({
         paddingLeft:20,
         flexDirection: 'row',
         overflow:'hidden',
+        shadowColor:colors.black,
+        shadowOffset:{
+            width:0,
+            height:2,
+        },
+        shadowOpacity:0.05,
+        shadowRadius:10,
+        elevation:2,
         
     },
 
